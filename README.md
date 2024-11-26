@@ -2,7 +2,7 @@
 
 [![Dynamic DevOps Roadmap](https://devopshive.net/badges/dynamic-devops-roadmap.svg)](https://github.com/DevOpsHiveHQ/dynamic-devops-roadmap)
 
-Hivebox is an API that provides environmental data relating to bees. The enviornmental data is sources from (openSenseMap)[https://opensensemap.org/]
+Hivebox is an API that provides environmental data relating to bees. The enviornmental data is sources from [openSenseMap](https://opensensemap.org/)
 
 ## Getting Started
 
