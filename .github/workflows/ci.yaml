@@ -35,6 +35,8 @@ jobs:
   tests:
     name: test
     runs-on: ubuntu-latest
+    env:
+      VERSION: "0.0.1"
 
     steps:
       - name: checkout codeuses
@@ -50,9 +52,6 @@ jobs:
 
       - name: install requirements
         run: pip install -r requirements.txt
-
-      - name: include 'VERSION' environment variable
-        run: export VERSION="0.0.1"
 
       - name: run tests
         run: pytest ./app
