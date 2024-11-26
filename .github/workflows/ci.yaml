@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu:latest
+
+    steps:
+      - name: checkout codeuses
+        uses: actions/checkout@v4
+
+      - name: setup python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: update pip
+        run: python -m pip install --upgrade pip
+
+      - name: install pylint
+        run: pip install pylint
+
+      - name: run pylint on app codebase
+        run: pylint ./app
+
+      - name: lint Dockerfile with Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
