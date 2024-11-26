@@ -2,8 +2,8 @@
 Module for getting the average temperature of all sensebox sensors.
 """
 
-import requests
 from datetime import datetime, timezone, timedelta
+import requests
 
 
 def get_sensor_data():
@@ -18,16 +18,18 @@ def get_sensor_data():
 
     params = {
         "phenomenon": "temperature",
-        # "date": f"{one_hour_ago},{current_time}",
         "date": current_time,
     }
-    # url = f'{api_url}?phenomenon={params["phenomenon"]}&date={params["date"]}'
-    response = requests.get(api_url, params=params)
-    if response.status_code == 200:
-        json = response.json()
-        return json
-    else:
-        raise Exception(f"failed to get sensor data: {response.json()}")
+
+    response = requests.get(api_url, params=params, timeout=30)
+
+    if response.status_code != 200:
+        raise requests.exceptions.RequestException(
+            f"failed to get sensor data: {response.json()}"
+        )
+
+    json = response.json()
+    return json
 
 
 def format_time(time):
@@ -37,7 +39,7 @@ def format_time(time):
     return time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def filter_seonsor_data(sensor_data):
+def filter_sensor_data(sensor_data):
     """
     Filter the sensor data to only include temperature values that are less than an hour old.
     """
@@ -67,7 +69,7 @@ def get_average_tempeature():
     """
     try:
         data = get_sensor_data()
-        temps = filter_seonsor_data(data)
+        temps = filter_sensor_data(data)
         return calculate_average_temperature(temps)
     except Exception as e:
         raise e

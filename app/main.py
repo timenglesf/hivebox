@@ -3,6 +3,7 @@ Main module for the FastAPI application.
 """
 
 from fastapi import FastAPI
+from requests import exceptions
 
 from get_version import get_version_json
 from get_temp import get_average_tempeature
@@ -34,5 +35,5 @@ async def temperature():
     try:
         average_temperature = get_average_tempeature()
         return {"temperature": average_temperature, "unit": "°C"}
-    except Exception as e:
+    except exceptions.RequestException as e:
         return {"error": e}
