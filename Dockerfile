@@ -3,7 +3,7 @@ FROM python:3.12.7-alpine3.20
 WORKDIR /app
 
 # Copy all the files from the src directory to the container
-COPY ./src/ ./
+COPY ./app/ ./
 COPY requirements.txt ./
 
 # Install dependencies
