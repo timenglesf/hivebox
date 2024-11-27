@@ -55,7 +55,7 @@ jobs:
     name: python-tests
     runs-on: ubuntu-latest
     env:
-      VERSION: "0.0.1"
+      VERSION: ${{ github.ref_name }}
 
     steps:
       - name: checkout code
