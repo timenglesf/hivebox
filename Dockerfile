@@ -7,8 +7,7 @@ COPY ./app/ ./
 COPY requirements.txt ./
 
 # Install dependencies
-RUN pyton3 -m pip install --upgrade pip && \ 
-  pip install --no-cache-dir  -r requirements.txt
+RUN  pip install --no-cache-dir  --requirement requirements.txt
 
 CMD ["fastapi", "run", "--port", "3000", "main.py"] 
 
