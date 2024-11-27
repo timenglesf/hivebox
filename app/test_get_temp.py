@@ -1,5 +1,7 @@
 """Tests for the get_temp module."""
 
+# pylint: disable=redefined-outer-name
+
 from datetime import datetime, timezone
 from unittest.mock import patch, MagicMock
 import pytest
@@ -19,10 +21,10 @@ def mock_response():
 
 
 @patch("get_temp.requests.get")
-def test_get_sensor_data_success(mock_get, mock_res):
+def test_get_sensor_data_success(mock_get, mock_response):
     """Test the successful retrieval of sensor data."""
-    mock_res.status_code = 200
-    mock_res.json.return_value = [
+    mock_response.status_code = 200
+    mock_response.json.return_value = [
         {"sensors": [{"title": "temperature", "lastMeasurement": {"value": "20.5"}}]}
     ]
     mock_get.return_value = mock_response
@@ -34,10 +36,10 @@ def test_get_sensor_data_success(mock_get, mock_res):
 
 
 @patch("get_temp.requests.get")
-def test_get_sensor_data_failure(mock_get, mock_res):
+def test_get_sensor_data_failure(mock_get, mock_response):
     """Test the failure scenario of retrieving sensor data."""
-    mock_res.status_code = 400
-    mock_res.json.return_value = {"message": "Bad Request"}
+    mock_response.status_code = 400
+    mock_response.json.return_value = {"message": "Bad Request"}
     mock_get.return_value = mock_response
 
     with pytest.raises(Exception):
