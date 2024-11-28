@@ -4,7 +4,7 @@ Module to test the get_version.py module.
 
 from os import getenv
 from fastapi.testclient import TestClient
-from get_version import get_env_version, get_version_json
+from get_version import get_env_version, get_version_json, Version
 from main import app
 
 client = TestClient(app)
@@ -23,9 +23,9 @@ def test_get_version_json():
     """
     Test the get_version_json function
     """
-    version = get_env_version()
+    curr_version = get_env_version()
     json = get_version_json()
-    assert json == {"version": version}
+    assert json == Version(version=curr_version)
 
 
 def test_version():
