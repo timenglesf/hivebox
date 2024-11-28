@@ -63,7 +63,7 @@ def calculate_average_temperature(sensor_data):
     return round(sum(sensor_data) / len(sensor_data), 2)
 
 
-def get_average_tempeature():
+def get_average_tempeature() -> float:
     """
     Get the average temperature of all sensebox sensors.
     """

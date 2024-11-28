@@ -3,17 +3,25 @@ Module for getting the current version of the application.
 """
 
 from os import getenv
+from pydantic import BaseModel
+
+
+class Version(BaseModel):
+    version: str
 
 
 def get_env_version():
     """
     Get the version of the application from the environment.
     """
-    return getenv("VERSION")
+    version = getenv("VERSION")
+    if version is None:
+        raise ValueError("VERSION environment variable is not set")
+    return version
 
 
-def get_version_json():
+def get_version_json() -> Version:
     """
     Get the version of the application as a JSON object.
     """
-    return {"version": get_env_version()}
+    return Version(version=get_env_version())
