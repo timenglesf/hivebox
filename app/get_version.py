@@ -7,6 +7,15 @@ from pydantic import BaseModel
 
 
 class Version(BaseModel):
+    """
+    A class used to represent the version of the application.
+
+    Attributes
+    ----------
+    version : str
+        The version string of the application.
+    """
+
     version: str
 
 
