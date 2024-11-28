@@ -16,19 +16,27 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
 
-      # - name: setup python ${{ matrix.python-version }}
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: "3.12"
+      - name: setup python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      # - name: update pip
-      #  run: python -m pip install --upgrade pip
+      - name: cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-      # - name: install pylint
-      #  run: pip install pylint
+      - name: install requirements
+        run: pip install -r requirements.txt
 
-      # - name: run pylint on app codebase
-      #  run: pylint ./app
+      - name: install pylint
+        run: pip install pylint
+
+      - name: run pylint on app codebase
+        run: pylint ./app
 
   lint-docker:
     name: dockerfile lint
@@ -61,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: "0.0.1"
+    needs: lint-code
 
     steps:
       - name: checkout code
@@ -70,6 +79,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: update pip
         run: python -m pip install --upgrade pip

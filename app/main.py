@@ -30,6 +30,17 @@ async def version() -> Version:
 
 
 class Temperature(BaseModel):
+    """
+    A class used to represent the temperature data.
+
+    Attributes
+    ----------
+    temperature : float
+        The temperature value.
+    unit : str
+        The unit of the temperature (e.g., "°C").
+    """
+
     temperature: float
     unit: str
 
