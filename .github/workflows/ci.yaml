@@ -69,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: "0.0.1"
+    needs: lint-code
 
     steps:
       - name: checkout code
