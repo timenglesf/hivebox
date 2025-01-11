@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
@@ -37,10 +38,7 @@ func main() {
 	fmt.Println("Starting server on port", app.cfg.port)
 	svr := app.intializeServer()
 
-	err = svr.ListenAndServe()
-	if err != nil {
-		app.logger.Error("error starting server: %v", err)
-	}
+	log.Fatal(svr.ListenAndServe())
 }
 
 // Initialize the HTTP server with configuration settings
