@@ -13,10 +13,6 @@ func (app *application) routes() http.Handler {
 	r.Use(middleware.GetHead)
 	r.Use(middleware.Logger)
 
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello World!"))
-	})
-
 	r.Get("/version", app.GetVersionHandler)
 	return r
 }

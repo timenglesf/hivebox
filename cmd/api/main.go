@@ -31,14 +31,16 @@ func main() {
 	}
 	app, err := createApplication(logger, cfg)
 	if err != nil {
-		os.Stderr.WriteString("Error creating application struct")
 		panic(err)
 	}
 
 	fmt.Println("Starting server on port", app.cfg.port)
 	svr := app.intializeServer()
 
-	svr.ListenAndServe()
+	err = svr.ListenAndServe()
+	if err != nil {
+		app.logger.Error("error starting server: %v", err)
+	}
 }
 
 // Initialize the HTTP server with configuration settings
