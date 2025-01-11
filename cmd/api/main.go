@@ -69,17 +69,6 @@ func createApplication(
 	return app, nil
 }
 
-func createConfig() (*config, error) {
-	cfg := &config{}
-	cfg.port = getEnv("HIVEBOX_API_PORT", "8282")
-
-	cfg.version = os.Getenv(VERSION_ENV)
-	if cfg.version == "" {
-		return nil, fmt.Errorf("environment variable %s not set", VERSION_ENV)
-	}
-	return cfg, nil
-}
-
 func getEnv(key, defaultValue string) string {
 	value := os.Getenv(key)
 	if value == "" {

@@ -10,7 +10,7 @@ func (app *application) GetVersionHandler(
 	r *http.Request,
 ) {
 	data := map[string]string{
-		"version": app.GetVersionString(),
+		"version": app.cfg.GetVersionString(),
 	}
 
 	js, err := json.Marshal(data)
@@ -29,8 +29,4 @@ func (app *application) GetVersionHandler(
 	w.Header().Set("Content-Type", "application/json")
 
 	w.Write(js)
-}
-
-func (app *application) GetVersionString() string {
-	return app.cfg.version
 }
