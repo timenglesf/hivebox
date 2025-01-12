@@ -30,7 +30,7 @@ func TestGetVersionHandler(t *testing.T) {
 			os.Setenv(VERSION_ENV, tt.version)
 			defer os.Unsetenv(VERSION_ENV)
 
-			app, err := newTestApplication(t)
+			app, err := newTestApplication(t, true)
 			if err != nil {
 				t.Fatal(err)
 			}

@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/timenglesf/hivebox/internal/sensebox"
 )
 
 // //////////////////////
@@ -13,8 +15,9 @@ import (
 // //////////////////////
 
 type application struct {
-	cfg    *config
-	logger *slog.Logger
+	cfg      *config
+	logger   *slog.Logger
+	sensebox sensebox.SenseboxInterface
 }
 
 // Create an application struct to hold the logger and configuration settings
@@ -23,8 +26,9 @@ func createApplication(
 	cfg *config,
 ) (*application, error) {
 	app := &application{
-		logger: logger,
-		cfg:    cfg,
+		logger:   logger,
+		cfg:      cfg,
+		sensebox: &sensebox.SenseboxService{},
 	}
 	return app, nil
 }

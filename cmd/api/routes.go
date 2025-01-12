@@ -14,5 +14,6 @@ func (app *application) routes() http.Handler {
 	r.Use(middleware.Logger)
 
 	r.Get("/version", app.GetVersionHandler)
+	r.Get("/temperature", app.GetTemperatureHandler)
 	return r
 }

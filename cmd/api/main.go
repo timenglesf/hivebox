@@ -1,19 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"log"
 )
 
 const (
-	VERSION_ENV = "HIVEBOX_VERSION"
-	PORT_ENV    = "HIVEBOX_PORT"
+	VERSION_ENV     = "HIVEBOX_VERSION"
+	PORT_ENV        = "HIVEBOX_PORT"
+	SENSEBOX_ID_ENV = "SENSEBOX_ID_"
 )
-
-type config struct {
-	port    string
-	version string
-}
 
 func main() {
 	logger := createLogger()
@@ -26,7 +21,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Starting server on port", app.cfg.port)
+	app.logger.Info("server starting", "port", app.cfg.port)
 	svr := app.intializeServer()
 
 	log.Fatal(svr.ListenAndServe())
