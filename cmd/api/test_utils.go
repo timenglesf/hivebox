@@ -16,7 +16,7 @@ import (
 // testing purposes.
 func newTestApplication(t *testing.T, setVersionEnvManually bool) (*application, error) {
 	if !setVersionEnvManually {
-		os.Setenv(VERSION_ENV, "1.0.0")
+		_ := os.Setenv(VERSION_ENV, "1.0.0")
 		defer os.Unsetenv(VERSION_ENV)
 	}
 
