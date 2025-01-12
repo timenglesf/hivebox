@@ -51,9 +51,10 @@ func getSenseBoxIds() []string {
 
 		if id == "" {
 			ids[i] = defaultSenseboxIds[i]
+		} else {
+			ids[i] = id
 		}
 
-		ids[i] = id
 	}
 
 	return ids
