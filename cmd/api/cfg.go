@@ -5,6 +5,12 @@ import (
 	"os"
 )
 
+const (
+	DEFAULT_ID_1 = "6442621e0331e20009b859bd"
+	DEFAULT_ID_2 = "62d12626e72c70001bcb61bd"
+	DEFAULT_ID_3 = "6442648b0331e20009b9d50f"
+)
+
 type config struct {
 	port     string
 	version  string
@@ -33,9 +39,9 @@ func (cfg *config) GetVersionString() string {
 
 func getSenseBoxIds() []string {
 	defaultSenseboxIds := []string{
-		"6442621e0331e20009b859bd",
-		"62d12626e72c70001bcb61bd",
-		"6442648b0331e20009b9d50f",
+		DEFAULT_ID_1,
+		DEFAULT_ID_2,
+		DEFAULT_ID_3,
 	}
 
 	ids := make([]string, len(defaultSenseboxIds))
