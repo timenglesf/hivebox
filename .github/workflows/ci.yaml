@@ -37,23 +37,8 @@ jobs:
       - name: Install Dependencies
         run: go get ./...
 
-      - name: Cache gosec
-        id: gosec-cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/gosec
-          key: ${{ runner.os }}-gosec-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-gosec-
-
       - name: Install gosec
-        if: steps.gosec-cache.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p ~/.cache/gosec
-          GOBIN=~/.cache/gosec go install github.com/securego/gosec/v2/cmd/gosec@latest
-
-      - name: Run gosec
-        run: ~/.cache/gosec/gosec ./...
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
 
       - name: Run Tests
         run: go test ./...

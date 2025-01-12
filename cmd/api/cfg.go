@@ -46,9 +46,10 @@ func getSenseBoxIds() []string {
 
 	ids := make([]string, len(defaultSenseboxIds))
 	for i := range ids {
-		id := os.Getenv(fmt.Sprintf("%s%d", SENSEBOX_ID_ENV, i+1))
+		envName := fmt.Sprintf("%s%d", SENSEBOX_ID_ENV, i+1)
+		id := os.Getenv(envName)
 
-		if id != "" {
+		if id == "" {
 			ids[i] = defaultSenseboxIds[i]
 		}
 
