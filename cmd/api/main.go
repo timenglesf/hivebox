@@ -2,15 +2,32 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"log"
 )
 
-var VERSION = os.Getenv("HIVEBOX_VERSION")
+const (
+	VERSION_ENV = "HIVEBOX_VERSION"
+	PORT_ENV    = "HIVEBOX_PORT"
+)
 
-func main() {
-	printVersion()
+type config struct {
+	port    string
+	version string
 }
 
-func printVersion() {
-	fmt.Println(VERSION)
+func main() {
+	logger := createLogger()
+	cfg, err := createConfig()
+	if err != nil {
+		panic(err)
+	}
+	app, err := createApplication(logger, cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Starting server on port", app.cfg.port)
+	svr := app.intializeServer()
+
+	log.Fatal(svr.ListenAndServe())
 }
