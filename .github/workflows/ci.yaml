@@ -10,11 +10,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      SENSEBOX_ID_1: ${{ vars.SENSEBOX_ID_1 }}
-      SENSEBOX_ID_2: ${{ vars.SENSEBOX_ID_2 }}
-      SENSEBOX_ID_3: ${{ vars.SENSEBOX_ID_3 }}
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
@@ -27,6 +28,8 @@ func newTestApplication(t *testing.T, setVersionEnvManually bool) (*application,
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Println(cfg.sensebox.ids)
 
 	return &application{
 		logger:   slog.New(slog.NewTextHandler(io.Discard, nil)),
