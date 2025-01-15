@@ -8,7 +8,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test:
+  test-go:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -40,3 +40,58 @@ jobs:
 
       - name: Run gosec
         run: gosec ./...
+
+  style-go:
+    name: style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Check formatting
+        run: test -z $(go fmt ./...)
+
+      - name: Run linter
+        run: staticcheck ./...
+
+  containerization:
+    name: containerization
+    needs: [test-go, style-go]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
+      # TODO: Container Registry Login
+
+      - name: Build Docker Image For Test
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
+
+      - name: Test Docker container
+        run: |
+          docker images
+          docker run --name hivebox-api -d \
+          -p 8282:8282 \
+          -e HIVEBOX_VERSION="0.0.1" \
+          ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
+
+          echo Testing using wget
+          wget -q -O http://127.0.0.1:8282/version | grep -i version
