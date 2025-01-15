@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM golang:1.23.4-alpine AS builder
 
 RUN apk update && \
-  apk add --no-cache git=2.43.1-r0 make=4.4.1-r2
+  apk add --no-cache git=2.47.2-r0 make=4.4.1-r2
 WORKDIR /app
 
 COPY go.mod go.sum ./
