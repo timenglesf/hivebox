@@ -93,5 +93,5 @@ jobs:
           -e HIVEBOX_VERSION="0.0.1" \
           ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
 
-          echo Testing using wget
-          wget -q -O http://127.0.0.1:8282/version | grep -i version
+          echo Testing Image URL using wget
+          wget -q -O - 127.0.0.1:8282/version | grep -i version
