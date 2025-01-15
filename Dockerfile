@@ -1,16 +1,25 @@
-FROM golang:1.23.4-alpine3.21 as BUILDER
+FROM golang:1.23.4-alpine3.21 as builder 
+
+RUN apk add --no-cache git make
 
 WORKDIR /app
 
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . . 
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o hivebox ./cmd/api
+ARG TARGETOS
+ARG TARGETARCH
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o hivebox ./cmd/api
 
-FROM scratch
+FROM --platform=${TARGETOS}/${TARGETARCH} alpine:latest
 
-COPY --from=BUILDER /app/hivebox /hivebox
+WORKDIR /app
+
+COPY --from=builder /app/hivebox /hivebox
 
 EXPOSE 8282
 
-ENTRYPOINT ["/hivebox"]
+ENTRYPOINT ["./hivebox"]
 
