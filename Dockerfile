@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o hivebox ./cmd/api
 
 FROM scratch
 
-COPY --from=builder /app/hivebox /hivebox
+COPY --from=BUILDER /app/hivebox /hivebox
 
 EXPOSE 8282
 
