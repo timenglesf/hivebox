@@ -17,7 +17,7 @@ FROM alpine:3.17.6
 
 WORKDIR /app
 
-COPY --from=builder /app/hivebox /hivebox
+COPY --from=builder ./app/hivebox hivebox
 
 EXPOSE 8282
 
