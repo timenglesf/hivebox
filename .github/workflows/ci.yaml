@@ -92,9 +92,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          platform: linux/amd64, linux/arm64
+          platform: linux/amd64
           push: false
-
           tags: ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
 
       - name: Test Docker container
@@ -107,3 +106,12 @@ jobs:
 
           echo Testing Image URL using wget
           wget -q -O - 127.0.0.1:8282/version | grep -i version
+
+      # TODO: Build multi-architecture-container on release
+      # - name: Build Docker Image For Test
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     context: .
+      #     platform: linux/amd64, linux/arm64
+      #     push: false
+      #     tags: ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
