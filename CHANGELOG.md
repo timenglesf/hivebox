@@ -2,8 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.2.0](https://github.com/timenglesf/hivebox/compare/v0.1.0...v0.2.0) (2025-01-16)
+### [0.2.1](https://github.com/timenglesf/hivebox/compare/v0.2.0...v0.2.1) (2025-01-16)
 
+### Bug Fixes
+
+* **ci:** typos in release.yaml ([6dd45ad](https://github.com/timenglesf/hivebox/commit/6dd45ad2dae0abf4802d2a4067a678dd677829c8))
+
+## [0.2.0](https://github.com/timenglesf/hivebox/compare/v0.1.0...v0.2.0) (2025-01-16)
 
 ### Features
 
@@ -13,7 +18,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **ci:** add release workflow and update Dockerfile ([5b758cb](https://github.com/timenglesf/hivebox/commit/5b758cbd376decbacd550b10d857bb65107b814c))
 * **ci:** enhance containerization jobs ([e5e90a7](https://github.com/timenglesf/hivebox/commit/e5e90a7ad7acde7d77aeac136a5d8540373129c8))
 * **sensebox:** add dummy data and service implementation ([8167554](https://github.com/timenglesf/hivebox/commit/816755410c4c887c90080bf4ef8cdc80d0172700))
-
 
 ### Bug Fixes
 
@@ -32,7 +36,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.1.0](https://github.com/timenglesf/hivebox/compare/v0.0.1...v0.1.0) (2025-01-12)
 
-
 ### Features
 
 * add CI workflow and improve error handling ([faea8a5](https://github.com/timenglesf/hivebox/commit/faea8a50b652522e40ccf52be6292c9f639729ec))
@@ -40,13 +43,11 @@ All notable changes to this project will be documented in this file. See [standa
 * add version endpoint and test utilities ([7ce6fd4](https://github.com/timenglesf/hivebox/commit/7ce6fd44231dd4b327282a32f9c51682ba2eb513))
 * **api:** add version endpoint and server setup ([3329259](https://github.com/timenglesf/hivebox/commit/3329259aa9a7bf5231fa7608feb8c98bb67b2c72))
 
-
 ### Bug Fixes
 
 * add missing error handling to writeJSON ([6a5fb9b](https://github.com/timenglesf/hivebox/commit/6a5fb9ba8e069850ebee3595ebe3cf435c0e184b))
 
 ### 0.0.1 (2025-01-10)
-
 
 ### Features
 
