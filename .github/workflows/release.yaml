@@ -11,7 +11,10 @@ on:
 jobs:
   containerization-build-push:
     name: Build and push multi-architecture containter
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: |
+      github.event_name == 'push' && 
+      startsWith(github.ref, 'refs/tags/v') && 
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
