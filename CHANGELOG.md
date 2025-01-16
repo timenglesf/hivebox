@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/timenglesf/hivebox/compare/v0.1.2...v0.2.2) (2025-01-16)
+
+
+### Features
+
+* **ci:** add multi-arch container build and push ([df4ddfb](https://github.com/timenglesf/hivebox/commit/df4ddfb12d668727d2e4754927cd0fddc019c590))
+
 ### [0.2.1](https://github.com/timenglesf/hivebox/compare/v0.1.2...v0.2.1) (2025-01-16)
 
 ### Bug Fixes
