@@ -1,9 +1,24 @@
-FROM golang:1.23.4-alpine3.21
+FROM --platform=$BUILDPLATFORM golang:1.23.4-alpine AS builder
+
+RUN apk update && \
+  apk add --no-cache git=2.47.2-r0 make=4.4.1-r2
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . . 
+
+ARG TARGETOS
+ARG TARGETARCH
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o hivebox ./cmd/api
+
+FROM alpine:3.17.6
 
 WORKDIR /app
 
-COPY . /app
+COPY --from=builder ./app/hivebox hivebox
 
-ENV HIVEBOX_VERSION="0.0.1" 
+EXPOSE 8282
 
-ENTRYPOINT [ "go", "run", "./cmd/api/main.go" ]
+ENTRYPOINT ["./hivebox"]

@@ -6,20 +6,32 @@ import (
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
+
+	"github.com/timenglesf/hivebox/internal/sensebox"
 )
 
 // newTestApplication creates a new instance of the application struct for
 // testing purposes.
-func newTestApplication(t *testing.T) (*application, error) {
+func newTestApplication(t *testing.T, setVersionEnvManually bool) (*application, error) {
+	if !setVersionEnvManually {
+		err := os.Setenv(VERSION_ENV, "1.0.0")
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer os.Unsetenv(VERSION_ENV)
+	}
+
 	cfg, err := createConfig()
 	if err != nil {
 		return nil, err
 	}
 
 	return &application{
-		logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
-		cfg:    cfg,
+		logger:   slog.New(slog.NewTextHandler(io.Discard, nil)),
+		cfg:      cfg,
+		sensebox: &sensebox.SenseboxServiceMock{},
 	}, nil
 }
 
