@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/timenglesf/hivebox/compare/v0.1.0...v0.1.1) (2025-01-16)
+
+
+### Features
+
+* add `/temperature` endpoint ([#3](https://github.com/timenglesf/hivebox/issues/3)) ([5acde3c](https://github.com/timenglesf/hivebox/commit/5acde3cc461c1ef9d09a6fb34cc377b8e47b3672))
+* **workflow:** update release workflow for tag-based triggers ([c4b1dab](https://github.com/timenglesf/hivebox/commit/c4b1dab95a5a84c85a786e41377bbd4eacb1b9cf))
+
+
+### Bug Fixes
+
+* add permissions to release workflow ([f826603](https://github.com/timenglesf/hivebox/commit/f82660314eaf7b4a979f8e3054ee57759af6aea9))
+* include 'ghcr.io' in image name ([28fb2fc](https://github.com/timenglesf/hivebox/commit/28fb2fc42a7dad4871260b0396eee5adbb4cba26))
+
 ## [0.2.0](https://github.com/timenglesf/hivebox/compare/v0.1.0...v0.2.0) (2025-01-16)
 
 
