@@ -21,7 +21,7 @@ RUN echo "Building for $TARGETOS/$TARGETARCH" && CGO_ENABLED=0 GOOS=${TARGETOS} 
 
 
 # Final stage
-FROM --platform=$TARGETPLATFORM alpine:3.19
+FROM --platform=$TARGETPLATFORM alpine:3.21
 
 WORKDIR /app
 
