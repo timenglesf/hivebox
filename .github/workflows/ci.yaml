@@ -39,7 +39,7 @@ jobs:
         run: go get ./...
 
       - name: Install gosec
-        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+        run: go install github.com/securego/gosec/v2/cmd/gosec@b12f51f7d688ab7f51c543813efbb984d466adab
 
       - name: Run Tests
         run: go test -v ./...
@@ -62,8 +62,7 @@ jobs:
           go-version: "1.22"
 
       - name: Install staticcheck
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest
-
+        run: go install honnef.co/go/tools/cmd/staticcheck@2024.1.1
       - name: Check formatting
         run: test -z $(go fmt ./...)
 
