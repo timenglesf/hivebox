@@ -11,10 +11,6 @@ on:
     branches: ["feat/**"]
     tags: ["v*"]
 
-env:
-  CHECKOUT_SHA: 11bd71901bbe5b1630ceea73d27597364c9af683
-  DOCKER_LOGIN_SHA: 327cd5a69de6c009b9ce71bce8395f28e651bf99
-
 jobs:
   test-go:
     runs-on: ubuntu-latest
@@ -22,10 +18,10 @@ jobs:
       contents: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@${{ env.CHECKOUT_SHA }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@3d10edb4c2d9ac9923e94a5ec73fa063078e9234
         with:
           go-version: "1.22"
 
@@ -58,10 +54,10 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@${{ env.CHECKOUT_SHA }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@3d10edb4c2d9ac9923e94a5ec73fa063078e9234
         with:
           go-version: "1.22"
 
@@ -82,15 +78,15 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@${{ env.CHECKOUT_SHA }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@d292784f8f3eacda47060b259a580467b0ba410c
         with:
           dockerfile: Dockerfile
 
       - name: Build Docker Image For Test
-        uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d # pin@v6
+        uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d
         with:
           context: .
           push: false
@@ -119,11 +115,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@${{ env.CHECKOUT_SHA }}
-
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@8e1d5461f02b7886d3c1a774bfbd873650445aa2
         with:
           images: |
             ghcr.io/${{ github.repository_owner }}/hivebox
@@ -132,7 +127,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@${{ env.DOCKER_LOGIN_SHA }}
+        uses: docker/login-action@327cd5a69de6c009b9ce71bce8395f28e651bf99
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -145,7 +140,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build and publish image
-        uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d # pin@v6
+        uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
