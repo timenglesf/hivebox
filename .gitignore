@@ -1,5 +1,7 @@
 coverage.html
 coverage.out
 cover.out
+*.out
+tmp/
 bin/
 
