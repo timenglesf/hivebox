@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"net/http"
 	"strconv"
 	"strings"
@@ -8,6 +9,14 @@ import (
 	"time"
 
 	"github.com/timenglesf/hivebox/internal/sensebox"
+)
+
+type tempStatus string
+
+var (
+	tempStatusCold tempStatus = "Too Cold"
+	tempStatusGood tempStatus = "Good"
+	tempStatusHot  tempStatus = "Too Hot"
 )
 
 // GetTemperatureHandler handles the HTTP request for getting temperature data.
@@ -34,9 +43,12 @@ func (app *application) GetTemperatureHandler(
 	}
 
 	averageTemp := average(temps)
+	tempStatus := getTempStatus(averageTemp)
+
+	js := envelope{"temperature": averageTemp, "status": tempStatus}
 
 	// Write JSON response
-	err = app.writeJSON(w, http.StatusOK, envelope{"temperature": averageTemp}, nil)
+	err = app.writeJSON(w, http.StatusOK, js, nil)
 	if err != nil {
 		app.logger.Error(err.Error())
 		http.Error(
@@ -115,5 +127,17 @@ func average(numbers []float64) float64 {
 		sum += number
 	}
 
-	return sum / float64(len(numbers))
+	avg := sum / float64(len(numbers))
+	return math.Round(avg*100) / 100
+}
+
+func getTempStatus(temp float64) tempStatus {
+	switch {
+	case temp < 11:
+		return tempStatusCold
+	case temp > 36:
+		return tempStatusHot
+	default:
+		return tempStatusGood
+	}
 }
