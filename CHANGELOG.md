@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/timenglesf/hivebox/compare/v0.2.4...v0.2.5) (2025-01-18)
+
+
+### Features
+
+* **api:** add temperature status and improve tests ([4c08d00](https://github.com/timenglesf/hivebox/commit/4c08d00fa8f551fccf504ffca798a5a0301287c0))
+
+
+### Bug Fixes
+
+* pin checkout actions by sha ([9d953c1](https://github.com/timenglesf/hivebox/commit/9d953c1d9ac9811a0180f49fbec13c5fd8506f94))
+* update permissions and correct typo in CI workflow ([85bfadb](https://github.com/timenglesf/hivebox/commit/85bfadbae5e0fe01b4429f296d7e9d313de72846))
+
 ### [0.2.4](https://github.com/timenglesf/hivebox/compare/v0.2.3...v0.2.4) (2025-01-16)
 
 
