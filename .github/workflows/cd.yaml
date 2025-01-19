@@ -11,6 +11,8 @@ permissions:
 jobs:
   container-test:
     name: Build and Test Container
+    permissions:
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,7 +36,7 @@ jobs:
           docker run --name hivebox-api -d \
           -p 8282:8282 \
           -e HIVEBOX_VERSION="0.0.1" \
-          ${{ vars.DOCKER_USERNAME }}/hivebox:${{ github.sha }}
+          ${{ github.repository_owner }}/hivebox:${{ github.sha }}
 
           sleep 2
 
