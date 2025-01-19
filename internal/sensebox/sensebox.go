@@ -66,7 +66,7 @@ func (sbs *SenseboxService) GetSenseboxData(id string) (SenseboxJSON, error) {
 	url := fmt.Sprintf("https://api.opensensemap.org/boxes/%s?format=json", id)
 
 	client := http.Client{
-		Timeout: time.Second * 2,
+		Timeout: time.Second * 6,
 	}
 
 	req, _ := http.NewRequest(http.MethodGet, url, nil)

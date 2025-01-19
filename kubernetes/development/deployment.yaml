@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hivebox
+  name: hivebox
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hivebox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hivebox
+    spec:
+      containers:
+        - image: ghcr.io/timenglesf/hivebox:0.2.5
+          name: hivebox
+          resources: {}
+          envFrom:
+            - configMapRef:
+                name: hivebox-env
+
+status: {}

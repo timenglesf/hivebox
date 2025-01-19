@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  HIVEBOX_VERSION: "0.2.5"
+  HIVEBOX_PORT: "8282"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: hivebox-env
+  namespace: development
