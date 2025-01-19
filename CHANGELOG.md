@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/timenglesf/hivebox/compare/v0.2.5...v0.2.6) (2025-01-19)
+
+
+### Features
+
+* add CD workflow for container build and push ([8513efb](https://github.com/timenglesf/hivebox/commit/8513efb120a4de43083c2bc2536d3c25525221cd))
+* add Kubernetes configs and update timeouts ([811dfa6](https://github.com/timenglesf/hivebox/commit/811dfa68a05d1d4bcc99aa2580dd121a9b5b9366))
+
 ### [0.2.5](https://github.com/timenglesf/hivebox/compare/v0.2.4...v0.2.5) (2025-01-18)
 
 
