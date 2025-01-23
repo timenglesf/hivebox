@@ -22,4 +22,4 @@ jobs:
     needs: container-test
     uses: ./.github/workflows/deliver-container.yaml
     secrets:
-      github_token: ${{ secrets.GITHUB_TOKEN}}
+      gh_token: ${{ secrets.GITHUB_TOKEN }}

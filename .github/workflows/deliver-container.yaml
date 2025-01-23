@@ -3,13 +3,12 @@ name: reusable deliver container
 on:
   workflow_call:
     secrets:
-      github_token:
+      gh_token:
         required: true
 
 jobs:
   container-deliver:
     name: Deliver Container to Registry
-    if: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')}}
     permissions:
       packages: write
     runs-on: ubuntu-latest
@@ -32,7 +31,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.github_token }}
+          password: ${{ secrets.gh_token }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@e5daf5da4ebfd37300852e88eac67cc6ad147f38
