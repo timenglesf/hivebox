@@ -12,11 +12,13 @@ on:
 
 jobs:
   test-code:
+    if: ${{ !startsWith(github.ref, 'refs/tags/v') || !startsWith(github.ref, 'refs/heads/feat/') }}
     uses: ./.github/workflows/test-code.yaml
 
   container-test:
     name: Build and Test Container
     needs: [test-code]
+    if: ${{ !startsWith(github.ref, 'refs/tags/v') || !startsWith(github.ref, 'refs/heads/feat/') }}
     uses: ./.github/workflows/test-container.yaml
 
   container-deliver:
@@ -24,7 +26,7 @@ jobs:
     needs: [container-test]
     permissions:
       packages: write
-    if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     uses: ./.github/workflows/deliver-container.yaml
     secrets:
       gh_token: ${{ secrets.GITHUB_TOKEN }}
