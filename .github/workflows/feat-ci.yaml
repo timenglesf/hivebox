@@ -1,0 +1,19 @@
+name: feat-ci
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["feat/**"]
+
+jobs:
+  test-code:
+    uses: ./.github/workflows/test-code.yaml
+
+  container-test:
+    name: Build and Test Container
+    needs: [test-code]
+    if: github.ref_type != 'tag' || startsWith(github.ref, 'refs/tags/v')
+    uses: ./.github/workfflows/test-container.yaml

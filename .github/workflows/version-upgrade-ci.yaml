@@ -1,0 +1,23 @@
+name: feat-ci
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["version/**"]
+
+jobs:
+  test-code:
+    uses: ./.github/workflows/test-code.yaml
+
+  container-test:
+    name: Build and Test Container
+    needs: test-code
+    uses: ./.github/workfflows/test-container.yaml
+
+  container-deliver:
+    name: Deliver Container to Registry
+    needs: container-test
+    uses: ./.github/workflows/deliver-container.yaml
