@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/timenglesf/hivebox/compare/v0.2.8...v0.2.9) (2025-01-23)
+
+
+### Features
+
+* **ci:** refactor CI workflows for modularity ([48be3cd](https://github.com/timenglesf/hivebox/commit/48be3cd76f32045864c7b9aa72a886df04fab10a))
+
+
+### Bug Fixes
+
+* rename secret in reusable workflow ([b911ad9](https://github.com/timenglesf/hivebox/commit/b911ad979737924f4805e316a596b68d3b5eafd2))
+
 ### [0.2.8](https://github.com/timenglesf/hivebox/compare/v0.2.7...v0.2.8) (2025-01-19)
 
 ### [0.2.7](https://github.com/timenglesf/hivebox/compare/v0.2.6...v0.2.7) (2025-01-19)
