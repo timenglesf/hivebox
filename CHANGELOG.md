@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/timenglesf/hivebox/compare/v0.2.11...v0.2.12) (2025-01-23)
+
+
+### Features
+
+* **ci:** add container delivery job ([8fe3681](https://github.com/timenglesf/hivebox/commit/8fe368108e65ee028dc33e55e3cae55741726364))
+
 ### [0.2.11](https://github.com/timenglesf/hivebox/compare/v0.2.10...v0.2.11) (2025-01-23)
 
 ### [0.2.10](https://github.com/timenglesf/hivebox/compare/v0.2.9...v0.2.10) (2025-01-23)
