@@ -1,5 +1,5 @@
 # Build stage
-FROM --platform=$BUILDPLATFORM golang:1.23.5-alpine3.21 AS builder
+FROM --platform=$BUILDPLATFORM golang:1.23.6-alpine3.21 AS builder
 
 RUN apk update && \
   apk add --no-cache git=2.47.2-r0 make=4.4.1-r2
